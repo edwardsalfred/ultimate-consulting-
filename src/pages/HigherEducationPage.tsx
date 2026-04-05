@@ -205,6 +205,20 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
       {/* top accent */}
       <div className="h-0.5 w-full" style={{ background: 'linear-gradient(to right, #1C82E2, transparent)' }} />
 
+      {/* Logo panel */}
+      <div className="flex items-center justify-center bg-white px-8 py-6" style={{ minHeight: '110px' }}>
+        {!logoError ? (
+          <img
+            src={study.logo}
+            alt={`${study.institution} logo`}
+            className="max-h-16 max-w-full w-auto object-contain"
+            onError={handleLogoError}
+          />
+        ) : (
+          <span className="text-slate-400 text-sm font-medium italic">{study.institution}</span>
+        )}
+      </div>
+
       <div className="p-7 flex flex-col flex-1">
         {/* tag */}
         <span
@@ -218,18 +232,6 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
         <h3 className="text-lg font-bold text-white mb-3 leading-snug group-hover:text-blue-300 transition-colors">
           {study.institution}
         </h3>
-
-        {/* Institution logo */}
-        {!logoError && (
-          <div className="mb-4 h-10 flex items-center">
-            <img
-              src={study.logo}
-              alt={`${study.institution} logo`}
-              className="max-h-10 max-w-[160px] object-contain"
-              onError={handleLogoError}
-            />
-          </div>
-        )}
 
         <p className="text-slate-400 text-sm leading-relaxed flex-1">{study.text}</p>
       </div>
