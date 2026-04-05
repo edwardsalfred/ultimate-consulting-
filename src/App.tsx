@@ -113,7 +113,7 @@ const Services = () => {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
           <ServiceCard 
             title="Enterprise System Strategy and Support"
             description="We provide implementation support, optimization, advisory services, and operational guidance for the core systems that power your institution."
@@ -121,6 +121,10 @@ const Services = () => {
           <ServiceCard 
             title="Process Improvement and Operational Efficiency"
             description="We help colleges and universities streamline workflows, reduce manual effort, improve collaboration across departments, and better align systems with institutional goals."
+          />
+          <ServiceCard 
+            title="Change Management, Training, and Functional Leadership"
+            description="We prepare teams for change through strategic planning, stakeholder engagement, communication, training, and ongoing functional support that drives adoption and long-term success."
           />
         </div>
       </div>
