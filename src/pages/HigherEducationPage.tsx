@@ -281,13 +281,10 @@ export default function HigherEducationPage() {
                 href="/#contact"
                 className="inline-flex items-center bg-white text-slate-900 px-8 py-3.5 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg text-sm"
               >
-                Start a Conversation <ArrowRight className="ml-2 w-4 h-4" />
-              </a>
-              <a
-                href="#services"
-                className="inline-flex items-center border border-white/30 text-white px-8 py-3.5 rounded-full font-medium hover:bg-white/10 transition-colors text-sm"
-              >
-                Our Services
+                <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
+                  <ArrowRight className="w-4 h-4 text-white" />
+                </span>
+                Let's Connect
               </a>
             </div>
           </motion.div>
