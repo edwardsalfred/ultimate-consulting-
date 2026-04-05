@@ -200,7 +200,7 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="group relative flex flex-col rounded-2xl overflow-hidden border border-slate-700/60 bg-slate-800/60 hover:border-blue-500/50 transition-colors duration-300"
+      className="group relative flex flex-col rounded-2xl overflow-hidden border border-slate-700/60 hover:border-blue-500/50 transition-colors duration-300 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
     >
       {/* top accent */}
       <div className="h-0.5 w-full" style={{ background: 'linear-gradient(to right, #1C82E2, transparent)' }} />
