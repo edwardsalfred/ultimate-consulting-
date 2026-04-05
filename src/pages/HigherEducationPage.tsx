@@ -209,7 +209,7 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
       <div className="h-0.5 w-full" style={{ background: 'linear-gradient(to right, #1C82E2, transparent)' }} />
 
       {/* Logo panel */}
-      <div className="flex items-center justify-center bg-white px-8 py-6" style={{ minHeight: '110px' }}>
+      <div className="flex items-center justify-center bg-white px-8" style={{ height: '140px' }}>
         {!logoError ? (
           <img
             src={study.logo}
