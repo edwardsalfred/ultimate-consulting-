@@ -1,7 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Menu, X, ChevronDown, ArrowRight, Search, Linkedin, Cpu, Globe, Eye, Shield, Rocket, Box, Palette, BookOpen, FileText, Newspaper } from 'lucide-react';
 import { motion, animate, useInView } from 'motion/react';
+import { Routes, Route } from 'react-router-dom';
 import MegaMenu, { MegaMenuItem } from './components/ui/mega-menu';
+import FeedbackPage from './pages/FeedbackPage';
 
 const NAV_ITEMS: MegaMenuItem[] = [
   {
@@ -491,14 +493,19 @@ const FooterLink = ({ text }: { text: string }) => (
 
 export default function App() {
   return (
-    <div className="min-h-screen bg-white font-sans">
-      <Navbar />
-      <Hero />
-      <Partnerships />
-      <Services />
-      <Stats />
-      <CTA />
-      <Footer />
-    </div>
+    <Routes>
+      <Route path="/feedback" element={<FeedbackPage />} />
+      <Route path="/*" element={
+        <div className="min-h-screen bg-white font-sans">
+          <Navbar />
+          <Hero />
+          <Partnerships />
+          <Services />
+          <Stats />
+          <CTA />
+          <Footer />
+        </div>
+      } />
+    </Routes>
   );
 }
