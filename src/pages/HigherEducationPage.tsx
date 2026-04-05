@@ -77,42 +77,42 @@ const caseStudies = [
     institution: 'Georgian College',
     tag: 'Business Continuity',
     icon: Shield,
-    logo: 'https://logo.clearbit.com/georgiancollege.ca',
+    logo: '/colleges logos/georgian_edited.jpg',
     text: 'When facing a potential support staff strike, Georgian College relied on Ultimate Consulting for emergency business continuity. We provided a dedicated pool of remote DBAs and technical consultants to monitor database backups and ensure the health and availability of their Ellucian Banner, PeopleSoft, and Salesforce CRM environments.',
   },
   {
     institution: 'Southern University and A&M College',
     tag: 'Custom Development',
     icon: Zap,
-    logo: 'https://logo.clearbit.com/subr.edu',
+    logo: '/colleges logos/southern university logo.png',
     text: 'To improve academic tracking, Southern University engaged Ultimate Consulting to expand its grading structure. We developed a custom Ellucian PageBuilder application with advanced validation logic, allowing faculty to easily input "No-Show" and "Four-Week Progress" grades. In subsequent phases, we optimized their DegreeWorks scribing, implemented FERPA Parent Proxy features, and configured tuition differentials.',
   },
   {
     institution: 'University of California, Santa Cruz',
     tag: 'Staff Augmentation',
     icon: Users,
-    logo: 'https://logo.clearbit.com/ucsc.edu',
+    logo: '/colleges logos/ucsc-logo-png-1632430467.png',
     text: 'Facing sudden technical staffing shortages, UCSC partnered with Ultimate Consulting to supply an expert Banner Finance technical resource. We ensured their Banner version upgrades stayed on track while successfully guiding the complex technical API integration of the Jaggaer supplier management system, providing vital mentorship to internal staff along the way.',
   },
   {
     institution: 'Santa Fe Community College',
     tag: 'Financial Aid & Migration',
     icon: GraduationCap,
-    logo: 'https://logo.clearbit.com/sfcc.edu',
+    logo: '/colleges logos/santa fe community college logo.png',
     text: 'As Santa Fe transitioned its systems, Ultimate Consulting provided crucial functional support for the Financial Aid team during a complex Banner-to-Workday migration, ensuring loan application processing and compliance continued flawlessly. Previously, we successfully automated their student-advisor assignment process using SQL rules to prevent advisor overloads.',
   },
   {
     institution: 'Central Community College',
     tag: 'System Integration',
     icon: Database,
-    logo: 'https://logo.clearbit.com/cccneb.edu',
+    logo: '/colleges logos/central community college logo.png',
     text: 'Central Community College partnered with Ultimate Consulting to integrate Ellucian Colleague with their new grant-tracking platform, FundMiner. Our technical consultants executed the complex Phase 1 data mapping and successfully set up a one-way Ellucian Ethos data integration, ensuring a seamless flow of foundation data.',
   },
   {
     institution: 'Northeast Community College',
     tag: 'Reporting & Analytics',
     icon: BarChart3,
-    logo: 'https://logo.clearbit.com/northeast.edu',
+    logo: '/colleges logos/logo_northeast_community_college.jpg',
     text: 'Ultimate Consulting engaged with Northeast CC on multiple fronts, leading a system-wide review and implementation of the Banner Faculty Load and Compensation (FLAC) and EPAF modules to reduce manual HR redundancies. Simultaneously, our technical team upgraded their Cognos reporting server, integrated it with AzureAD, and helped construct data flows for modern Power BI dashboards.',
   },
 ];
@@ -221,12 +221,11 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
 
         {/* Institution logo */}
         {!logoError && (
-          <div className="mb-4 h-8 flex items-center">
+          <div className="mb-4 h-10 flex items-center">
             <img
               src={study.logo}
               alt={`${study.institution} logo`}
-              className="max-h-8 max-w-[140px] object-contain"
-              style={{ filter: 'brightness(0) invert(1)', opacity: 0.75 }}
+              className="max-h-10 max-w-[160px] object-contain"
               onError={handleLogoError}
             />
           </div>
