@@ -7,7 +7,7 @@ import Navbar from './components/Navbar';
 
 const Hero = () => {
   return (
-    <div className="relative bg-gradient-to-br from-slate-900 via-primary to-secondary pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
+    <div className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-32 pb-20 lg:pt-48 lg:pb-32 overflow-hidden">
       <div className="absolute inset-0 bg-black/10"></div>
       
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
