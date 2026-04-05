@@ -25,9 +25,11 @@ export default function FeedbackPage() {
   const [pageSection, setPageSection] = useState('');
   const [description, setDescription] = useState('');
   const [status, setStatus] = useState<FormStatus>('idle');
+  const [attemptedSubmit, setAttemptedSubmit] = useState(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setAttemptedSubmit(true);
     if (!businessName || !requestType || !description) return;
 
     setStatus('submitting');
@@ -155,6 +157,8 @@ export default function FeedbackPage() {
                   className={`flex flex-col items-center text-center p-3 rounded-xl border-2 transition-all cursor-pointer ${
                     requestType === label
                       ? 'border-blue-500 bg-blue-50 text-blue-700'
+                      : attemptedSubmit && !requestType
+                      ? 'border-red-300 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
                       : 'border-gray-200 bg-white text-gray-600 hover:border-gray-300 hover:bg-gray-50'
                   }`}
                 >
@@ -164,6 +168,9 @@ export default function FeedbackPage() {
                 </button>
               ))}
             </div>
+            {attemptedSubmit && !requestType && (
+              <p className="text-red-500 text-xs mt-1">Please select a change type.</p>
+            )}
           </div>
 
           {/* Priority + Page Section */}
@@ -227,7 +234,8 @@ export default function FeedbackPage() {
           {/* Submit */}
           <button
             type="submit"
-            disabled={status === 'submitting' || !businessName || !requestType || !description}
+            disabled={status === 'submitting'}
+            onClick={() => setAttemptedSubmit(true)}
             className="w-full bg-amber-700 hover:bg-amber-800 disabled:bg-gray-300 disabled:cursor-not-allowed text-white font-semibold py-4 rounded-xl transition-colors flex items-center justify-center gap-2"
           >
             {status === 'submitting' ? (
