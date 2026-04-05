@@ -42,7 +42,7 @@ const Partnerships = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mb-6 lg:mb-0">
-            Strategic Partnerships That Power Your Success
+            Higher Education Expertise Built Around Your Core Systems
           </h2>
           <a href="#contact" className="inline-flex items-center text-primary font-medium hover:text-blue-700 transition-colors">
             Work With Us <ArrowRight className="ml-2 w-5 h-5" />
