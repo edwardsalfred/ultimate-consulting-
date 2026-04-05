@@ -115,12 +115,14 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0">
-            <img
-              src="https://4ucit.com/wp-content/uploads/2022/11/NAV-Logo-WHITE2-768x156.png"
-              alt="Ultimate Consulting"
-              className="h-10 transition-all duration-300"
-              referrerPolicy="no-referrer"
-            />
+            <a href="/">
+              <img
+                src="https://4ucit.com/wp-content/uploads/2022/11/NAV-Logo-WHITE2-768x156.png"
+                alt="Ultimate Consulting"
+                className="h-10 transition-all duration-300"
+                referrerPolicy="no-referrer"
+              />
+            </a>
           </div>
 
           <div className="hidden md:flex items-center">
