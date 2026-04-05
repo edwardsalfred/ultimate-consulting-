@@ -78,6 +78,7 @@ const caseStudies = [
     tag: 'Business Continuity',
     icon: Shield,
     logo: '/colleges logos/georgian_edited.jpg',
+    logoSize: 'max-h-24',
     text: 'When facing a potential support staff strike, Georgian College relied on Ultimate Consulting for emergency business continuity. We provided a dedicated pool of remote DBAs and technical consultants to monitor database backups and ensure the health and availability of their Ellucian Banner, PeopleSoft, and Salesforce CRM environments.',
   },
   {
@@ -92,6 +93,7 @@ const caseStudies = [
     tag: 'Staff Augmentation',
     icon: Users,
     logo: '/colleges logos/ucsc-logo-png-1632430467.png',
+    logoSize: 'max-h-24',
     text: 'Facing sudden technical staffing shortages, UCSC partnered with Ultimate Consulting to supply an expert Banner Finance technical resource. We ensured their Banner version upgrades stayed on track while successfully guiding the complex technical API integration of the Jaggaer supplier management system, providing vital mentorship to internal staff along the way.',
   },
   {
@@ -99,6 +101,7 @@ const caseStudies = [
     tag: 'Financial Aid & Migration',
     icon: GraduationCap,
     logo: '/colleges logos/santa fe community college logo.png',
+    logoSize: 'max-h-24',
     text: 'As Santa Fe transitioned its systems, Ultimate Consulting provided crucial functional support for the Financial Aid team during a complex Banner-to-Workday migration, ensuring loan application processing and compliance continued flawlessly. Previously, we successfully automated their student-advisor assignment process using SQL rules to prevent advisor overloads.',
   },
   {
@@ -211,7 +214,7 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
           <img
             src={study.logo}
             alt={`${study.institution} logo`}
-            className="max-h-16 max-w-full w-auto object-contain"
+            className={`${study.logoSize ?? 'max-h-16'} max-w-full w-auto object-contain`}
             onError={handleLogoError}
           />
         ) : (
