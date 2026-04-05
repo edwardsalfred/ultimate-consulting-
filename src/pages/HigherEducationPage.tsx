@@ -9,7 +9,7 @@ export default function HigherEducationPage() {
       <Navbar />
       
       {/* Hero Section */}
-      <section className="relative bg-[#4A0E0E] pt-32 pb-40 lg:pb-56 overflow-hidden">
+      <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-32 pb-40 lg:pb-56 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <nav className="flex mb-12 text-xs font-medium text-white/60 uppercase tracking-widest">
             <a href="/" className="hover:text-white">Our Customers</a>
@@ -34,20 +34,13 @@ export default function HigherEducationPage() {
             <p className="text-lg text-white/80 mb-12 leading-relaxed max-w-3xl">
               Ultimate Consulting is a specialized higher-education IT consulting firm dedicated to helping institutions modernize operations, ensure business continuity, and drive student success. Whether you are navigating a complex ERP migration, bridging a critical staffing gap, or building custom administrative applications, we provide the deep technical and functional expertise you need. We empower campuses to modernize their core environments, eliminate manual workflows, and deliver a seamless technological experience.
             </p>
-            <a href="/#contact" className="inline-flex items-center bg-white text-[#4A0E0E] px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">
-              <span className="w-6 h-6 bg-[#1e293b] rounded-full flex items-center justify-center mr-3">
+            <a href="/#contact" className="inline-flex items-center bg-white text-slate-900 px-8 py-3 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg">
+              <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center mr-3">
                 <ArrowRight className="w-4 h-4 text-white" />
               </span>
               Let's Connect
             </a>
           </motion.div>
-        </div>
-
-        {/* Decorative Graduation Cap Icon (Bottom Right) */}
-        <div className="absolute bottom-12 right-12 lg:bottom-24 lg:right-24 hidden md:block">
-          <div className="w-24 h-24 lg:w-32 lg:h-32 rounded-full border border-white/20 flex items-center justify-center opacity-30">
-            <GraduationCap className="w-12 h-12 lg:w-16 h-16 text-white" />
-          </div>
         </div>
       </section>
 
