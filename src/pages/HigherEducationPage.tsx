@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight, ChevronDown, Server, Users, BarChart3, BookOpen,
-  Shield, Zap, Database, GraduationCap, Building2, MapPin
+  Shield, Zap, Database, GraduationCap
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
+import Footer from '../components/Footer';
 
 /* ─────────────────────────────────────────────
    DATA
@@ -373,6 +374,8 @@ export default function HigherEducationPage() {
           </motion.div>
         </div>
       </section>
+
+      <Footer />
     </div>
   );
 }
