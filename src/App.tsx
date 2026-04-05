@@ -17,13 +17,13 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-amber-400 font-bold tracking-[0.2em] uppercase text-xs mb-6 block drop-shadow-sm">
+            <span className="text-amber-400 font-bold tracking-[0.2em] uppercase text-[10px] mb-6 block drop-shadow-sm">
               Modernize Higher Education with Confidence
             </span>
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-[1.15] mb-8 max-w-4xl">
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight leading-[1.2] mb-8 max-w-3xl">
               Your technology should support student success, institutional effectiveness, and long term growth and not create more complexity.
             </h1>
-            <p className="text-lg text-white/80 mb-10 leading-relaxed max-w-2xl">
+            <p className="text-base text-white/80 mb-10 leading-relaxed max-w-2xl">
               Ultimate Consulting helps colleges and universities modernize enterprise systems, improve business processes, and lead transformation initiatives with confidence. With deep expertise in Ellucian Banner, Ellucian Colleague, and Workday, we support higher education institutions in navigating change, strengthening operations, and achieving lasting results.
             </p>
             <a href="#contact" className="inline-flex items-center bg-white text-primary px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition-colors text-lg shadow-lg">
