@@ -111,24 +111,24 @@ const Navbar = () => {
   }, []);
 
   return (
-    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'bg-white shadow-md py-4' : 'bg-transparent py-6'}`}>
+    <nav className={`fixed w-full z-50 transition-all duration-300 ${scrolled ? 'py-4' : 'py-6'}`} style={{ background: scrolled ? 'rgba(10, 20, 45, 0.97)' : 'transparent', backdropFilter: scrolled ? 'blur(12px)' : 'none', boxShadow: scrolled ? '0 1px 0 rgba(255,255,255,0.06)' : 'none' }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           <div className="flex-shrink-0">
             <img
               src="https://4ucit.com/wp-content/uploads/2022/11/NAV-Logo-WHITE2-768x156.png"
               alt="Ultimate Consulting"
-              className={`h-10 transition-all duration-300 ${scrolled ? 'invert brightness-0' : ''}`}
+              className="h-10 transition-all duration-300"
               referrerPolicy="no-referrer"
             />
           </div>
 
-          <div className={`hidden md:flex items-center ${scrolled ? 'text-gray-800' : 'text-white'}`}>
-            <MegaMenu items={NAV_ITEMS} className={scrolled ? '[&_button]:text-gray-600 hover:[&_button]:text-gray-900' : ''} />
+          <div className="hidden md:flex items-center">
+            <MegaMenu items={NAV_ITEMS} />
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button onClick={() => setIsSearchOpen(true)} className={`p-2 ${scrolled ? 'text-gray-800' : 'text-white'}`}>
+            <button onClick={() => setIsSearchOpen(true)} className="p-2 text-white">
               <Search className="w-5 h-5" />
             </button>
             <a href="#contact" className="bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-blue-600 transition-colors flex items-center">
@@ -137,7 +137,7 @@ const Navbar = () => {
           </div>
 
           <div className="md:hidden flex items-center">
-            <button onClick={() => setIsOpen(!isOpen)} className={scrolled ? 'text-gray-800' : 'text-white'}>
+            <button onClick={() => setIsOpen(!isOpen)} className="text-white">
               {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
