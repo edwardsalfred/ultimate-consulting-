@@ -227,6 +227,48 @@ const CTA = () => {
 
 
 
+const LogoCarousel = () => {
+  const logos = [
+    "https://4ucit.com/wp-content/uploads/2022/11/Miami.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/UNCG.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/NMCC.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/Charlotte.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/SFCC.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/UofCal.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/Penn.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/UVI.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/Xavier.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/ACU.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/Doane.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/Clemson.png",
+    "https://4ucit.com/wp-content/uploads/2022/11/Regents.png"
+  ];
+
+  return (
+    <div className="py-12 bg-white overflow-hidden border-b border-gray-100">
+      <div className="max-w-7xl mx-auto px-4 mb-8">
+        <p className="text-center text-xs font-bold text-slate-400 uppercase tracking-[0.3em]">Some of our Customers</p>
+      </div>
+      <div className="relative">
+        <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-white to-transparent z-10"></div>
+        <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-white to-transparent z-10"></div>
+        
+        <motion.div 
+          animate={{ x: ["0%", "-50%"] }}
+          transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
+          className="flex whitespace-nowrap w-fit"
+        >
+          {[...logos, ...logos].map((logo, index) => (
+            <div key={index} className="flex-shrink-0 px-12 grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100 h-10 flex items-center">
+              <img src={logo} alt="Institution Logo" className="h-full object-contain" referrerPolicy="no-referrer" />
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </div>
+  );
+};
+
 export default function App() {
   return (
     <Routes>
@@ -236,6 +278,7 @@ export default function App() {
         <div className="min-h-screen bg-slate-50 font-sans">
           <Navbar />
           <Hero />
+          <LogoCarousel />
           <Partnerships />
           <Services />
           <Stats />
