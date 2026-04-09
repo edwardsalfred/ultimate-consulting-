@@ -260,7 +260,7 @@ const LogoCarousel = () => {
           className="flex whitespace-nowrap w-fit"
         >
           {[...logos, ...logos].map((logo, index) => (
-            <div key={index} className="flex-shrink-0 px-12 grayscale hover:grayscale-0 transition-all opacity-50 hover:opacity-100 h-10 flex items-center">
+            <div key={index} className="flex-shrink-0 px-12 transition-all h-10 flex items-center">
               <img src={logo} alt="Institution Logo" className="h-full object-contain" referrerPolicy="no-referrer" />
             </div>
           ))}
