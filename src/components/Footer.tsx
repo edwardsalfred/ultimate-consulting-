@@ -42,13 +42,7 @@ const Footer = () => {
           </div>
 
           <div className="md:col-span-4 flex flex-col space-y-4">
-            <h4 className="text-white font-semibold mb-4">Company</h4>
-            <FooterLink text="Careers & Culture" />
-            <FooterLink text="Resources" />
-            <FooterLink text="Events" />
-            <FooterLink text="News" />
-
-            <div className="mt-8 pt-8 border-t border-slate-800">
+            <div>
               <p className="text-gray-400 mb-4">
                 PO Box 38,<br />
                 Lebanon, GA, 30146<br />
