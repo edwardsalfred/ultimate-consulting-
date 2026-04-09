@@ -5,7 +5,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     return res.status(405).json({ error: 'Method not allowed' });
   }
 
-  const { firstName, lastName, email, institution, role, message } = req.body ?? {};
+  const { firstName, lastName, email, phone, institution, role, message } = req.body ?? {};
 
   if (!String(firstName || '').trim() || !String(lastName || '').trim() || !String(email || '').trim() || !String(message || '').trim()) {
     return res.status(400).json({ error: 'Missing required fields' });
@@ -36,6 +36,9 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
           },
           'Email': {
             email: String(email).trim().slice(0, 200),
+          },
+          'Phone': {
+            phone_number: String(phone || '').trim().slice(0, 40),
           },
           'Institution': {
             rich_text: [{ text: { content: String(institution || '').slice(0, MAX_TEXT) } }],

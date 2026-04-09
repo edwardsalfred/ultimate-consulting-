@@ -1,8 +1,8 @@
 import React from 'react';
 import { Linkedin } from 'lucide-react';
 
-const FooterLink = ({ text }: { text: string }) => (
-  <a href="#" className="text-gray-400 hover:text-primary transition-colors">
+const FooterLink = ({ text, href }: { text: string; href?: string }) => (
+  <a href={href || "#"} className="text-gray-400 hover:text-primary transition-colors">
     {text}
   </a>
 );
@@ -35,10 +35,10 @@ const Footer = () => {
 
           <div className="md:col-span-4 flex flex-col space-y-4">
             <h4 className="text-white font-semibold mb-4">Quick Links</h4>
-            <FooterLink text="Our Services" />
-            <FooterLink text="Our Customers" />
-            <FooterLink text="Who We Are" />
-            <FooterLink text="Ultimate Insights" />
+            <FooterLink text="Our Services" href="/#services" />
+            <FooterLink text="Our Customers" href="/higher-education" />
+            <FooterLink text="Who We Are" href="/who-we-are" />
+            <FooterLink text="Ultimate Insights" href="/insights" />
           </div>
 
           <div className="md:col-span-4 flex flex-col space-y-4">
@@ -58,8 +58,14 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-slate-800 pt-8 flex flex-col space-y-6 text-sm text-gray-500">
-          <div className="flex justify-center md:justify-start">
+          <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-4">
             <a href="#" className="hover:text-white">Privacy Policy</a>
+            <span className="text-gray-500 text-center md:text-right">
+              created by{' '}
+              <a href="https://www.chatbotboy.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                Chatbot Boy AI
+              </a>
+            </span>
           </div>
           <p className="text-xs leading-relaxed text-gray-500 text-center md:text-left">
             COPYRIGHT © 2026 ULTIMATE CONSULTING LLC. ALL RIGHTS RESERVED - REFERENCES TO ELLUCIAN, SCT, SUNGARD, DATATEL AND BANNER ARE FEDERAL REGISTERED TRADEMARKS OF ELLUCIAN / SUNGARD DATA SYSTEMS, INC. ORACLE AND PEOPLESOFT ARE REGISTERED TRADEMARKS OF ORACLE AND/OR ITS AFFILIATES. OTHER NAMES MAY BE TRADEMARKS OF THEIR RESPECTIVE OWNERS. ULTIMATE CONSULTING IT LLC IS NOT AFFILIATED WITH ELLUCIAN, SUNGARD DATA SYSTEMS, INC., ORACLE, NOR PEOPLESOFT.

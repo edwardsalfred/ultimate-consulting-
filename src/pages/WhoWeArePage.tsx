@@ -145,7 +145,7 @@ const WhoWeArePage = () => {
                   <img 
                     src={member.image} 
                     alt={member.name}
-                    className="w-full h-full object-cover rounded-full transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover rounded-full mix-blend-luminosity grayscale contrast-125 transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
                 <div className="text-center">

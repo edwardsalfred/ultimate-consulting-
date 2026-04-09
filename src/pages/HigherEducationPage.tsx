@@ -282,7 +282,7 @@ export default function HigherEducationPage() {
             </p>
             <div className="flex flex-wrap gap-4">
               <a
-                href="/#contact"
+                href="/contact"
                 className="inline-flex items-center bg-white text-slate-900 px-8 py-3.5 rounded-full font-semibold hover:bg-gray-100 transition-colors shadow-lg text-sm"
               >
                 <span className="w-6 h-6 bg-primary rounded-full flex items-center justify-center mr-3 flex-shrink-0">
@@ -373,7 +373,7 @@ export default function HigherEducationPage() {
               We're ready when you are.
             </p>
             <a
-              href="/#contact"
+              href="/contact"
               className="inline-flex items-center bg-blue-600 text-white px-10 py-4 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg hover:shadow-xl text-base"
             >
               Contact Us <ArrowRight className="ml-2 w-5 h-5" />

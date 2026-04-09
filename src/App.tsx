@@ -6,6 +6,8 @@ import FeedbackPage from './pages/FeedbackPage';
 import ContactPage from './pages/ContactPage';
 import WhoWeArePage from './pages/WhoWeArePage';
 import HigherEducationPage from './pages/HigherEducationPage';
+import InsightsPage from './pages/InsightsPage';
+import BlogPostPage from './pages/BlogPostPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -30,7 +32,7 @@ const Hero = () => {
             <p className="text-base text-white/80 mb-10 leading-relaxed max-w-2xl">
               Ultimate Consulting helps colleges and universities modernize enterprise systems, improve business processes, and lead transformation initiatives with confidence. With deep expertise in Ellucian Banner, Ellucian Colleague, and Workday, we support higher education institutions in navigating change, strengthening operations, and achieving lasting results.
             </p>
-            <a href="#contact" className="inline-flex items-center bg-white text-primary px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition-colors text-lg shadow-lg">
+            <a href="/contact" className="inline-flex items-center bg-white text-primary px-8 py-4 rounded-full font-medium hover:bg-gray-50 transition-colors text-lg shadow-lg">
               Work With Us <ArrowRight className="ml-2 w-5 h-5" />
             </a>
           </motion.div>
@@ -48,7 +50,7 @@ const Partnerships = () => {
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 max-w-2xl mb-6 lg:mb-0">
             Higher Education Expertise Built Around Your Core Systems
           </h2>
-          <a href="#contact" className="inline-flex items-center text-primary font-medium hover:text-blue-700 transition-colors">
+          <a href="/contact" className="inline-flex items-center text-primary font-medium hover:text-blue-700 transition-colors">
             Work With Us <ArrowRight className="ml-2 w-5 h-5" />
           </a>
         </div>
@@ -219,7 +221,7 @@ const CTA = () => {
         <p className="text-xl text-gray-600 mb-10">
           Let’s talk about your institution’s goals and how Ultimate Consulting can help you modernize with confidence.
         </p>
-        <a href="#contact" className="inline-flex items-center bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-blue-600 transition-colors text-lg shadow-lg hover:shadow-xl">
+        <a href="/contact" className="inline-flex items-center bg-primary text-white px-8 py-4 rounded-full font-medium hover:bg-blue-600 transition-colors text-lg shadow-lg hover:shadow-xl">
           Contact Us <ArrowRight className="ml-2 w-5 h-5" />
         </a>
       </div>
@@ -278,6 +280,8 @@ export default function App() {
       <Route path="/feedback" element={<FeedbackPage />} />
       <Route path="/contact" element={<ContactPage />} />
       <Route path="/who-we-are" element={<WhoWeArePage />} />
+      <Route path="/insights" element={<InsightsPage />} />
+      <Route path="/insights/:slug" element={<BlogPostPage />} />
       <Route path="/higher-education" element={<HigherEducationPage />} />
       <Route path="/*" element={
         <div className="min-h-screen bg-slate-50 font-sans">

@@ -11,6 +11,7 @@ export default function ContactPage() {
   const [firstName, setFirstName] = useState('');
   const [lastName, setLastName] = useState('');
   const [email, setEmail] = useState('');
+  const [phone, setPhone] = useState('');
   const [institution, setInstitution] = useState('');
   const [role, setRole] = useState('');
   const [message, setMessage] = useState('');
@@ -29,7 +30,7 @@ export default function ContactPage() {
       const res = await fetch('/api/contact', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, institution, role, message }),
+        body: JSON.stringify({ firstName, lastName, email, phone, institution, role, message }),
       });
       if (!res.ok) throw new Error('Failed');
       setStatus('success');
@@ -226,24 +227,39 @@ export default function ContactPage() {
                 </div>
               </div>
 
-              {/* Email */}
-              <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
-                  Work Email <span className="text-red-400">*</span>
-                </label>
-                <input
-                  id="contact-email"
-                  type="email"
-                  value={email}
-                  onChange={e => setEmail(e.target.value)}
-                  placeholder="jane.smith@university.edu"
-                  className={`w-full border rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-colors ${
-                    attemptedSubmit && !email.trim() ? 'border-red-300' : 'border-gray-200'
-                  }`}
-                />
-                {attemptedSubmit && !email.trim() && (
-                  <p className="text-red-500 text-xs mt-1">Email is required.</p>
-                )}
+              {/* Email and Phone */}
+              <div className="grid sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                    Work Email <span className="text-red-400">*</span>
+                  </label>
+                  <input
+                    id="contact-email"
+                    type="email"
+                    value={email}
+                    onChange={e => setEmail(e.target.value)}
+                    placeholder="jane.smith@university.edu"
+                    className={`w-full border rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-colors ${
+                      attemptedSubmit && !email.trim() ? 'border-red-300' : 'border-gray-200'
+                    }`}
+                  />
+                  {attemptedSubmit && !email.trim() && (
+                    <p className="text-red-500 text-xs mt-1">Email is required.</p>
+                  )}
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                    Phone Number
+                  </label>
+                  <input
+                    id="contact-phone"
+                    type="tel"
+                    value={phone}
+                    onChange={e => setPhone(e.target.value)}
+                    placeholder="(555) 123-4567"
+                    className="w-full border border-gray-200 rounded-xl px-4 py-3 text-gray-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent bg-gray-50 transition-colors"
+                  />
+                </div>
               </div>
 
               {/* Institution + Role */}
