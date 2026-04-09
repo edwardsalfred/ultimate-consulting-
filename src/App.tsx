@@ -98,9 +98,6 @@ const PartnerCard = ({ logo, description, linkText, logoClassName }: { logo: str
       <p className="text-gray-600 mb-8 flex-grow">
         {description}
       </p>
-      <a href="#" className="inline-flex items-center text-primary font-medium hover:text-blue-700 transition-colors mt-auto">
-        {linkText} <ArrowRight className="ml-2 w-4 h-4" />
-      </a>
     </motion.div>
   );
 };
