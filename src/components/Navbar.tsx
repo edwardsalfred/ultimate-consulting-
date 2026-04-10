@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, ArrowRight, Search, Cpu, Rocket, Box, GraduationCap } from 'lucide-react';
-import { motion } from 'motion/react';
+import { Menu, X, ChevronDown, ArrowRight, Cpu, Rocket, Box, GraduationCap } from 'lucide-react';
 import MegaMenu, { MegaMenuItem } from './ui/mega-menu';
 
 export const NAV_ITEMS: MegaMenuItem[] = [
@@ -74,16 +73,6 @@ const MobileNavItem: React.FC<{ item: MegaMenuItem }> = ({ item }) => {
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const [isSearchOpen, setIsSearchOpen] = useState(false);
-
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') setIsSearchOpen(false);
-    };
-    if (isSearchOpen) window.addEventListener('keydown', handleKeyDown);
-    return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [isSearchOpen]);
-
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', handleScroll);
@@ -110,9 +99,6 @@ const Navbar = () => {
           </div>
 
           <div className="hidden md:flex items-center space-x-4">
-            <button onClick={() => setIsSearchOpen(true)} className="p-2 text-white">
-              <Search className="w-5 h-5" />
-            </button>
             <a href="/contact" className="bg-primary text-white px-6 py-3 rounded-full font-medium hover:bg-blue-600 transition-colors flex items-center">
               Work With Us <ArrowRight className="ml-2 w-4 h-4" />
             </a>
@@ -139,34 +125,6 @@ const Navbar = () => {
         </div>
       )}
 
-      {isSearchOpen && (
-        <div className="fixed inset-0 z-[100] flex items-center justify-center bg-slate-900/80 backdrop-blur-md px-4">
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95, y: -20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            className="w-full max-w-2xl"
-          >
-            <div className="relative flex items-center bg-white rounded-2xl shadow-2xl overflow-hidden p-2">
-              <Search className="w-7 h-7 text-gray-400 ml-4 flex-shrink-0" />
-              <input
-                type="text"
-                autoFocus
-                placeholder="What are you looking for?"
-                className="w-full bg-transparent border-none focus:outline-none focus:ring-0 text-xl px-6 py-4 text-gray-800 placeholder-gray-400"
-              />
-              <button
-                onClick={() => setIsSearchOpen(false)}
-                className="p-3 text-gray-400 hover:text-gray-800 hover:bg-gray-100 rounded-xl transition-colors flex-shrink-0 mr-1"
-              >
-                <X className="w-6 h-6" />
-              </button>
-            </div>
-            <div className="mt-6 flex justify-center text-white/70 text-sm items-center">
-              Press <kbd className="px-2 py-1 bg-white/10 rounded-md font-mono mx-2 border border-white/20">Esc</kbd> to close
-            </div>
-          </motion.div>
-        </div>
-      )}
     </nav>
   );
 };
