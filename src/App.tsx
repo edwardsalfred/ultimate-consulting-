@@ -246,7 +246,12 @@ const LogoCarousel = () => {
     "https://4ucit.com/wp-content/uploads/2023/01/doane.png",
     "https://4ucit.com/wp-content/uploads/2022/11/Clemson.png",
     "https://4ucit.com/wp-content/uploads/2022/11/Regents.png",
-    "https://4ucit.com/wp-content/uploads/2022/11/UNCpembroke.png"
+    "https://4ucit.com/wp-content/uploads/2022/11/UNCpembroke.png",
+    "/colleges logos/northeastmcc.png",
+    "/colleges logos/PHSC-LOGO-Stacked-Black-Gold.png",
+    "/colleges logos/The_University_of_California_1868_UCSC.svg.png",
+    "/colleges logos/universityofvirginislands.png",
+    "/colleges logos/boardofregents.png"
   ];
 
   return (
