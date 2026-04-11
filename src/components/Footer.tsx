@@ -1,5 +1,6 @@
 import React from 'react';
 import { Linkedin } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 const FooterLink = ({ text, href }: { text: string; href?: string }) => (
   <a href={href || "#"} className="text-gray-400 hover:text-primary transition-colors">
@@ -59,7 +60,10 @@ const Footer = () => {
 
         <div className="border-t border-slate-800 pt-8 flex flex-col space-y-6 text-sm text-gray-500">
           <div className="flex flex-col md:flex-row justify-between items-center md:items-start gap-4">
-            <a href="#" className="hover:text-white">Privacy Policy</a>
+            <div className="flex gap-6">
+              <Link to="/privacy-policy" className="hover:text-white transition-colors">Privacy Policy</Link>
+              <Link to="/terms" className="hover:text-white transition-colors">Terms &amp; Conditions</Link>
+            </div>
             <span className="text-gray-500 text-center md:text-right">
               created by{' '}
               <a href="https://www.chatbotboy.ai/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">

@@ -8,6 +8,8 @@ import WhoWeArePage from './pages/WhoWeArePage';
 import HigherEducationPage from './pages/HigherEducationPage';
 import InsightsPage from './pages/InsightsPage';
 import BlogPostPage from './pages/BlogPostPage';
+import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
+import TermsPage from './pages/TermsPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -288,6 +290,8 @@ export default function App() {
       <Route path="/insights" element={<InsightsPage />} />
       <Route path="/insights/:slug" element={<BlogPostPage />} />
       <Route path="/higher-education" element={<HigherEducationPage />} />
+      <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+      <Route path="/terms" element={<TermsPage />} />
       <Route path="/*" element={
         <div className="min-h-screen bg-slate-50 font-sans">
           <Navbar />
