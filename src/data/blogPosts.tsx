@@ -340,7 +340,7 @@ export const blogPosts: BlogPost[] = [
             {
               num: '4',
               title: 'Poor Data Readiness',
-              body: 'Existing data isn't cleaned before migration. Integrations are deferred. Analytics lack trustworthiness from day one, eroding confidence in the new system.',
+              body: "Existing data isn't cleaned before migration. Integrations are deferred. Analytics lack trustworthiness from day one, eroding confidence in the new system.",
             },
           ].map(({ num, title, body }) => (
             <div key={num} className="flex gap-4 items-start bg-slate-50 border border-slate-100 rounded-2xl p-6 shadow-sm">
@@ -754,7 +754,7 @@ export const blogPosts: BlogPost[] = [
         </p>
         <ul className="mb-10 space-y-3 pl-0">
           {[
-            'Fragmented technology investments that don't connect across the student lifecycle',
+            "Fragmented technology investments that don't connect across the student lifecycle",
             'Delayed upgrades due to unclear priorities or funding disagreements',
             'Underutilized platforms with low adoption and limited ROI',
             'Unforeseen compliance or cybersecurity risks from neglected infrastructure',
