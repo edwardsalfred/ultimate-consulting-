@@ -22,7 +22,6 @@ export const NAV_ITEMS: MegaMenuItem[] = [
   },
   { id: 4, label: "Who We Are", link: "/who-we-are" },
   { id: 5, label: "Ultimate Insights", link: "/insights" },
-  { id: 6, label: "Contact Us", link: "/contact" },
 ];
 
 const MobileNavItem: React.FC<{ item: MegaMenuItem }> = ({ item }) => {
