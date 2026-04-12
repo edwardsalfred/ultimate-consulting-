@@ -1,20 +1,42 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowRight, Calendar, User, ChevronRight } from 'lucide-react';
+import { ArrowRight, Calendar, User, ChevronRight, ChevronLeft } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
 import { blogPosts } from '../data/blogPosts';
 
+const POSTS_PER_PAGE = 6;
+
 export default function InsightsPage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pageParam = parseInt(searchParams.get('page') || '1', 10);
+  const currentPage = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+
+  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
+  const safePage = Math.min(currentPage, totalPages);
+
+  const pagePosts = blogPosts.slice(
+    (safePage - 1) * POSTS_PER_PAGE,
+    safePage * POSTS_PER_PAGE
+  );
+
+  // Scroll to top of grid when page changes
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [safePage]);
+
+  const goToPage = (page: number) => {
+    setSearchParams({ page: String(page) });
+  };
+
   return (
     <div className="min-h-screen bg-slate-50 font-sans">
       <Navbar />
 
       {/* ── Hero ── */}
       <section className="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 pt-36 pb-32 lg:pb-44 overflow-hidden">
-        {/* subtle grid overlay */}
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -25,7 +47,6 @@ export default function InsightsPage() {
         />
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* breadcrumb */}
           <nav className="flex mb-10 text-xs font-semibold text-white/50 uppercase tracking-widest">
             <a href="/" className="hover:text-white transition-colors">Home</a>
             <span className="mx-2 text-white/30">/</span>
@@ -50,26 +71,26 @@ export default function InsightsPage() {
       <section className="py-24 bg-slate-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {blogPosts.map((post, idx) => (
+            {pagePosts.map((post, idx) => (
               <motion.div
                 key={post.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
+                transition={{ duration: 0.5, delay: idx * 0.08 }}
                 className="group flex flex-col bg-white rounded-2xl overflow-hidden border border-gray-100 shadow-sm hover:shadow-xl transition-all duration-300"
               >
                 <div className="w-full h-56 overflow-hidden bg-gray-100 relative">
                   <div className="absolute top-4 left-4 z-10 bg-white/90 backdrop-blur-sm text-blue-600 text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">
                     {post.category}
                   </div>
-                  <img 
-                    src={post.image} 
-                    alt={post.title} 
-                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700" 
+                  <img
+                    src={post.image}
+                    alt={post.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
                   />
                 </div>
-                
+
                 <div className="flex-1 p-8 flex flex-col">
                   <div className="flex items-center gap-4 text-xs font-medium text-gray-400 mb-4">
                     <span className="flex items-center gap-1.5">
@@ -81,15 +102,15 @@ export default function InsightsPage() {
                       {post.author}
                     </span>
                   </div>
-                  
+
                   <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors leading-snug">
                     {post.title}
                   </h3>
-                  
+
                   <p className="text-gray-500 text-sm leading-relaxed mb-6 flex-1">
                     {post.excerpt}
                   </p>
-                  
+
                   <div className="mt-auto pt-4 border-t border-gray-50">
                     <Link to={`/insights/${post.slug}`} className="flex items-center text-sm font-semibold text-blue-600 group-hover:text-blue-800 transition-colors">
                       Read Article
@@ -100,7 +121,45 @@ export default function InsightsPage() {
               </motion.div>
             ))}
           </div>
-          
+
+          {/* ── Pagination ── */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-16">
+              <button
+                onClick={() => goToPage(safePage - 1)}
+                disabled={safePage === 1}
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                aria-label="Previous page"
+              >
+                <ChevronLeft className="w-4 h-4" />
+              </button>
+
+              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                <button
+                  key={page}
+                  onClick={() => goToPage(page)}
+                  className={`w-10 h-10 rounded-full text-sm font-semibold transition-colors ${
+                    page === safePage
+                      ? 'bg-blue-600 text-white shadow-md'
+                      : 'border border-gray-200 text-gray-600 hover:border-blue-600 hover:text-blue-600'
+                  }`}
+                  aria-label={`Page ${page}`}
+                  aria-current={page === safePage ? 'page' : undefined}
+                >
+                  {page}
+                </button>
+              ))}
+
+              <button
+                onClick={() => goToPage(safePage + 1)}
+                disabled={safePage === totalPages}
+                className="w-10 h-10 flex items-center justify-center rounded-full border border-gray-200 text-gray-500 hover:border-blue-600 hover:text-blue-600 disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
+                aria-label="Next page"
+              >
+                <ChevronRight className="w-4 h-4" />
+              </button>
+            </div>
+          )}
         </div>
       </section>
 
