@@ -12,6 +12,7 @@ import PrivacyPolicyPage from './pages/PrivacyPolicyPage';
 import TermsPage from './pages/TermsPage';
 import EnterpriseSystemStrategyPage from './pages/EnterpriseSystemStrategyPage';
 import ProcessImprovementPage from './pages/ProcessImprovementPage';
+import ChangeManagementPage from './pages/ChangeManagementPage';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
@@ -134,6 +135,7 @@ const Services = () => {
           <ServiceCard
             title="Change Management, Training, and Functional Leadership"
             description="We prepare teams for change through strategic planning, stakeholder engagement, communication, training, and ongoing functional support that drives adoption and long-term success."
+            link="/services/change-management"
           />
         </div>
       </div>
@@ -298,6 +300,7 @@ export default function App() {
       <Route path="/terms" element={<TermsPage />} />
       <Route path="/services/enterprise-system-strategy" element={<EnterpriseSystemStrategyPage />} />
       <Route path="/services/process-improvement" element={<ProcessImprovementPage />} />
+      <Route path="/services/change-management" element={<ChangeManagementPage />} />
       <Route path="/*" element={
         <div className="min-h-screen bg-slate-50 font-sans">
           <Navbar />

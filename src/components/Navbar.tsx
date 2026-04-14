@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, ChevronDown, ArrowRight, Cpu, Rocket, Box, GraduationCap, Server, Workflow } from 'lucide-react';
+import { Menu, X, ChevronDown, ArrowRight, Cpu, Rocket, Box, GraduationCap, Server, Workflow, Users } from 'lucide-react';
 import MegaMenu, { MegaMenuItem } from './ui/mega-menu';
 
 export const NAV_ITEMS: MegaMenuItem[] = [
@@ -12,6 +12,7 @@ export const NAV_ITEMS: MegaMenuItem[] = [
         items: [
           { label: "Enterprise System Strategy and Support", description: "Implementation, optimization, and advisory for core ERPs", icon: Server, link: "/services/enterprise-system-strategy" },
           { label: "Process Improvement and Operational Efficiency", description: "Automated workflows across HR, finance, and student modules", icon: Workflow, link: "/services/process-improvement" },
+          { label: "Change Management, Training, and Functional Leadership", description: "Training, interim leadership, and knowledge transfer", icon: Users, link: "/services/change-management" },
         ],
       },
     ],
