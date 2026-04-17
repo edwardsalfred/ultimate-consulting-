@@ -87,7 +87,6 @@ const caseStudies = [
     icon: Database,
     logo: '/colleges logos/south-carolina.svg',
     logoSize: 'max-h-16',
-    logoBg: '#73000A',
     text: 'The University of South Carolina engaged Ultimate Consulting to provide an Oracle/Banner DBA consultant to lead the implementation of a new Banner XE instance. Our technical experts successfully installed and upgraded the Oracle database and Ellucian software across multiple modules, configured the application servers, and successfully deployed the Banner API to ensure complete system readiness.',
   },
   {
