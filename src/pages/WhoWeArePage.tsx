@@ -1,8 +1,31 @@
 import React from 'react';
 import { motion } from 'motion/react';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Shield, Award, BookOpen, Handshake } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
+
+const principles = [
+  {
+    icon: Shield,
+    title: 'Trust & Accountability',
+    description: 'We do exactly what we say. Transparent pricing, measurable outcomes, and no surprises.',
+  },
+  {
+    icon: Award,
+    title: 'Practical Expertise',
+    description: 'Our consultants are former university staff, directors, and leaders who\u2019ve lived your challenges.',
+  },
+  {
+    icon: BookOpen,
+    title: 'Knowledge Transfer',
+    description: 'Every engagement includes mentoring, documentation, and training so your team can own the work.',
+  },
+  {
+    icon: Handshake,
+    title: 'Long-Term Partnership',
+    description: 'Most of our clients come back — or refer others. Our business is built on relationships, not transactions.',
+  },
+];
 
 const WhoWeArePage = () => {
   const team = [
@@ -112,8 +135,58 @@ const WhoWeArePage = () => {
         </div>
       </section>
 
-      {/* ── Team Section ── */}
+      {/* ── Principles Section ── */}
       <section className="py-24 bg-slate-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mb-16"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-3">What We Stand For</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+              Principles That Guide Every Engagement
+            </h2>
+            <p className="mt-4 text-gray-500 max-w-xl leading-relaxed">
+              The values we were founded on in 2010 still guide how we work with every institution today.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {principles.map((p, i) => {
+              const Icon = p.icon;
+              return (
+                <motion.div
+                  key={p.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5, delay: i * 0.08 }}
+                  className="group relative bg-white rounded-2xl border border-gray-100 shadow-sm p-8 overflow-hidden transition-all duration-300 hover:border-blue-200 hover:shadow-xl hover:-translate-y-1"
+                >
+                  <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-500 group-hover:w-full" />
+                  <div
+                    className="relative w-12 h-12 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
+                    style={{ background: 'rgba(28,130,226,0.1)', color: '#1C82E2' }}
+                  >
+                    <Icon className="w-6 h-6" />
+                  </div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2 leading-snug group-hover:text-blue-700 transition-colors">
+                    {p.title}
+                  </h3>
+                  <p className="text-sm text-gray-500 leading-relaxed">
+                    {p.description}
+                  </p>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Team Section ── */}
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -159,7 +232,7 @@ const WhoWeArePage = () => {
       </section>
 
       {/* ── CTA ── */}
-      <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 border-t border-gray-100 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{

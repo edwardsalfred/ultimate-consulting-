@@ -39,8 +39,32 @@ const services = [
   },
 ];
 
+const approachSteps = [
+  {
+    number: '01',
+    title: 'Assess',
+    description: 'We audit your ERP environment — architecture, integrations, performance, and security posture.',
+  },
+  {
+    number: '02',
+    title: 'Architect',
+    description: 'We design a modernization roadmap aligned to your institutional goals and technical realities.',
+  },
+  {
+    number: '03',
+    title: 'Implement',
+    description: 'Our Senior DBAs and technical consultants execute upgrades, migrations, and integrations hands-on.',
+  },
+  {
+    number: '04',
+    title: 'Support',
+    description: 'We stay on call — monitoring backups, tuning performance, and keeping your systems healthy.',
+  },
+];
+
 const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({ service, index }) => {
   const Icon = service.icon;
+  const num = String(index + 1).padStart(2, '0');
 
   return (
     <motion.div
@@ -48,20 +72,31 @@ const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.08 }}
-      className="bg-white rounded-2xl border border-gray-100 shadow-sm p-7 flex items-start gap-5"
+      className="group relative bg-white rounded-2xl border border-gray-100 shadow-sm p-8 overflow-hidden transition-all duration-300 hover:border-blue-200 hover:shadow-xl hover:-translate-y-1"
     >
-      <div
-        className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mt-0.5"
-        style={{ background: 'rgba(28,130,226,0.08)', color: '#1C82E2' }}
+      <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-500 group-hover:w-full" />
+
+      <span
+        className="absolute top-5 right-6 text-[4rem] font-black leading-none tabular-nums select-none pointer-events-none"
+        style={{ color: 'rgba(28,130,226,0.06)' }}
+        aria-hidden="true"
       >
-        <Icon className="w-6 h-6" />
+        {num}
+      </span>
+
+      <div
+        className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-5 transition-transform duration-300 group-hover:scale-110"
+        style={{ background: 'rgba(28,130,226,0.1)', color: '#1C82E2' }}
+      >
+        <Icon className="w-7 h-7" />
       </div>
-      <div className="flex-1">
-        <h3 className="text-lg font-bold text-gray-900 leading-snug">
-          {service.title}
-        </h3>
-        <p className="mt-2 text-gray-500 text-sm leading-relaxed">{service.summary}</p>
-      </div>
+
+      <h3 className="relative text-xl font-bold text-gray-900 mb-3 leading-snug group-hover:text-blue-700 transition-colors">
+        {service.title}
+      </h3>
+      <p className="relative text-gray-600 text-sm leading-relaxed">
+        {service.summary}
+      </p>
     </motion.div>
   );
 };
@@ -140,8 +175,55 @@ export default function EnterpriseSystemStrategyPage() {
         </div>
       </section>
 
+      {/* ── Approach ── */}
+      <section className="py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mb-16"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-3">How We Work</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+              Our Approach to Every Engagement
+            </h2>
+            <p className="mt-4 text-gray-500 max-w-xl leading-relaxed">
+              A proven, four-phase methodology that keeps your institution informed, aligned, and in control from start to finish.
+            </p>
+          </motion.div>
+
+          <div className="relative grid md:grid-cols-4 gap-10">
+            <div
+              className="hidden md:block absolute top-6 left-16 right-16 pointer-events-none"
+              style={{ borderTop: '2px dashed rgba(28,130,226,0.25)' }}
+              aria-hidden="true"
+            />
+            {approachSteps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative"
+              >
+                <div
+                  className="relative w-12 h-12 rounded-full bg-white border-2 flex items-center justify-center mb-5 z-10"
+                  style={{ borderColor: '#1C82E2' }}
+                >
+                  <span className="font-bold text-sm" style={{ color: '#1C82E2' }}>{step.number}</span>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2">{step.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
-      <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 border-t border-gray-100 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{

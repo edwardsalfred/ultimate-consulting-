@@ -2,7 +2,7 @@ import React, { useState, useCallback } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import {
   ArrowRight, ChevronDown, Server, Users, BarChart3, BookOpen,
-  Shield, Zap, Database, GraduationCap
+  ClipboardCheck, Database, GraduationCap, Code2
 } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -74,19 +74,21 @@ const services = [
 
 const caseStudies = [
   {
-    institution: 'Georgian College',
-    tag: 'Business Continuity',
-    icon: Shield,
-    logo: '/colleges logos/georgian_edited.jpg',
-    logoSize: 'max-h-24',
-    text: 'When facing a potential support staff strike, Georgian College relied on Ultimate Consulting for emergency business continuity. We provided a dedicated pool of remote DBAs and technical consultants to monitor database backups and ensure the health and availability of their Ellucian Banner, PeopleSoft, and Salesforce CRM environments.',
+    institution: 'Kent State University',
+    tag: 'Project Management & System Upgrades',
+    icon: ClipboardCheck,
+    logo: '/colleges logos/kent-state.jpg',
+    logoSize: 'max-h-20',
+    text: 'Kent State University partnered with Ultimate Consulting to provide expert project management and technical services for their Banner 9 Self-Service upgrade. Our team guided the functional and technical implementation across the Banner General, Finance, Employee, Student, and Faculty modules, helping the university streamline processes, improve customer service, and enhance daily business operations.',
   },
   {
-    institution: 'Southern University and A&M College',
-    tag: 'Custom Development',
-    icon: Zap,
-    logo: '/colleges logos/southern university logo.png',
-    text: 'To improve academic tracking, Southern University engaged Ultimate Consulting to expand its grading structure. We developed a custom Ellucian PageBuilder application with advanced validation logic, allowing faculty to easily input "No-Show" and "Four-Week Progress" grades. In subsequent phases, we optimized their DegreeWorks scribing, implemented FERPA Parent Proxy features, and configured tuition differentials.',
+    institution: 'The University of South Carolina',
+    tag: 'Database Administration & System Installation',
+    icon: Database,
+    logo: '/colleges logos/south-carolina.svg',
+    logoSize: 'max-h-16',
+    logoBg: '#73000A',
+    text: 'The University of South Carolina engaged Ultimate Consulting to provide an Oracle/Banner DBA consultant to lead the implementation of a new Banner XE instance. Our technical experts successfully installed and upgraded the Oracle database and Ellucian software across multiple modules, configured the application servers, and successfully deployed the Banner API to ensure complete system readiness.',
   },
   {
     institution: 'University of California, Santa Cruz',
@@ -105,11 +107,12 @@ const caseStudies = [
     text: 'As Santa Fe transitioned its systems, Ultimate Consulting provided crucial functional support for the Financial Aid team during a complex Banner-to-Workday migration, ensuring loan application processing and compliance continued flawlessly. Previously, we successfully automated their student-advisor assignment process using SQL rules to prevent advisor overloads.',
   },
   {
-    institution: 'Central Community College',
-    tag: 'System Integration',
-    icon: Database,
-    logo: '/colleges logos/central community college logo.png',
-    text: 'Central Community College partnered with Ultimate Consulting to integrate Ellucian Colleague with their new grant-tracking platform, FundMiner. Our technical consultants executed the complex Phase 1 data mapping and successfully set up a one-way Ellucian Ethos data integration, ensuring a seamless flow of foundation data.',
+    institution: 'University of Pennsylvania — Perelman School of Medicine',
+    tag: 'Custom Algorithm Development & Data Collection',
+    icon: Code2,
+    logo: '/colleges logos/3061-upenn-perelman-school-medicine.gif',
+    logoSize: 'max-h-20',
+    text: 'The University of Pennsylvania\u2019s Perelman School of Medicine partnered with Ultimate Consulting to develop a specialized Python algorithm to capture psychometric behavioral data from auditory stimuli. Our technical team engineered a custom solution that synchronized with complex neurophysiological recording systems, established normalized parameters from patient responses, and successfully set up validation for data collection using Amazon Mechanical Turk.',
   },
   {
     institution: 'Northeast Community College',
@@ -123,9 +126,33 @@ const caseStudies = [
 /* ─────────────────────────────────────────────
    SERVICE CARD (accordion)
 ───────────────────────────────────────────── */
+const approachSteps = [
+  {
+    number: '01',
+    title: 'Understand',
+    description: 'We start with your institution\u2019s mission, culture, and operational reality — not a one-size template.',
+  },
+  {
+    number: '02',
+    title: 'Align',
+    description: 'We co-create a plan that aligns technology decisions with student success and institutional goals.',
+  },
+  {
+    number: '03',
+    title: 'Deliver',
+    description: 'Our consultants execute with sensitivity to your academic calendar, stakeholders, and compliance needs.',
+  },
+  {
+    number: '04',
+    title: 'Enable',
+    description: 'We transfer knowledge so your team can independently sustain and evolve the work after we leave.',
+  },
+];
+
 const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({ service, index }) => {
   const [open, setOpen] = useState(false);
   const Icon = service.icon;
+  const num = String(index + 1).padStart(2, '0');
 
   return (
     <motion.div
@@ -133,20 +160,30 @@ const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
-      className="bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden"
+      className="group relative bg-white rounded-2xl border border-gray-100 shadow-sm overflow-hidden transition-all duration-300 hover:border-blue-200 hover:shadow-xl hover:-translate-y-1"
     >
+      <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-500 group-hover:w-full z-20" />
+
+      <span
+        className="absolute top-5 right-14 text-[4rem] font-black leading-none tabular-nums select-none pointer-events-none"
+        style={{ color: 'rgba(28,130,226,0.06)' }}
+        aria-hidden="true"
+      >
+        {num}
+      </span>
+
       <button
         onClick={() => setOpen(!open)}
-        className="w-full flex items-start gap-5 p-7 text-left group"
+        className="relative w-full flex items-start gap-5 p-8 text-left"
       >
         <div
-          className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center mt-0.5"
-          style={{ background: 'rgba(28,130,226,0.08)', color: '#1C82E2' }}
+          className="flex-shrink-0 w-14 h-14 rounded-xl flex items-center justify-center transition-transform duration-300 group-hover:scale-110"
+          style={{ background: 'rgba(28,130,226,0.1)', color: '#1C82E2' }}
         >
-          <Icon className="w-6 h-6" />
+          <Icon className="w-7 h-7" />
         </div>
         <div className="flex-1">
-          <h3 className="text-lg font-bold text-gray-900 group-hover:text-blue-600 transition-colors leading-snug">
+          <h3 className="text-xl font-bold text-gray-900 group-hover:text-blue-700 transition-colors leading-snug">
             {service.title}
           </h3>
           <p className="mt-2 text-gray-500 text-sm leading-relaxed">{service.summary}</p>
@@ -209,12 +246,16 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
       <div className="h-0.5 w-full" style={{ background: 'linear-gradient(to right, #1C82E2, transparent)' }} />
 
       {/* Logo panel */}
-      <div className="flex items-center justify-center bg-white px-8" style={{ height: '140px' }}>
+      <div
+        className="flex items-center justify-center px-8"
+        style={{ height: '140px', background: (study as { logoBg?: string }).logoBg ?? '#ffffff' }}
+      >
         {!logoError ? (
           <img
             src={study.logo}
             alt={`${study.institution} logo`}
             className={`${study.logoSize ?? 'max-h-16'} max-w-full w-auto object-contain`}
+            style={(study as { logoBlend?: boolean }).logoBlend ? { mixBlendMode: 'multiply' } : undefined}
             onError={handleLogoError}
           />
         ) : (
@@ -349,8 +390,55 @@ export default function HigherEducationPage() {
         </div>
       </section>
 
+      {/* ── Approach ── */}
+      <section className="py-24 bg-white border-t border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mb-16"
+          >
+            <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-3">How We Work</span>
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
+              Our Approach to Every Institution
+            </h2>
+            <p className="mt-4 text-gray-500 max-w-xl leading-relaxed">
+              A proven methodology we bring to every higher education engagement, from initial strategy through knowledge transfer.
+            </p>
+          </motion.div>
+
+          <div className="relative grid md:grid-cols-4 gap-10">
+            <div
+              className="hidden md:block absolute top-6 left-16 right-16 pointer-events-none"
+              style={{ borderTop: '2px dashed rgba(28,130,226,0.25)' }}
+              aria-hidden="true"
+            />
+            {approachSteps.map((step, i) => (
+              <motion.div
+                key={step.number}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                className="relative"
+              >
+                <div
+                  className="relative w-12 h-12 rounded-full bg-white border-2 flex items-center justify-center mb-5 z-10"
+                  style={{ borderColor: '#1C82E2' }}
+                >
+                  <span className="font-bold text-sm" style={{ color: '#1C82E2' }}>{step.number}</span>
+                </div>
+                <h3 className="text-base font-bold text-gray-900 mb-2">{step.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ── CTA ── */}
-      <section className="py-24 bg-white border-t border-gray-100 relative overflow-hidden">
+      <section className="py-24 bg-slate-50 border-t border-gray-100 relative overflow-hidden">
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{

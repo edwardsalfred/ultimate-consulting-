@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { motion } from 'motion/react';
-import { Send, ArrowLeft, MapPin, Phone, Linkedin } from 'lucide-react';
+import { Send, ArrowLeft, ArrowRight, MapPin, Phone, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
@@ -160,17 +160,17 @@ export default function ContactPage() {
 
             <div className="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 rounded-2xl p-6 text-white">
               <h3 className="font-bold text-lg mb-2">What to Expect</h3>
-              <ul className="space-y-2 text-sm text-white/70">
-                <li className="flex items-start gap-2">
-                  <span className="text-amber-400 mt-0.5">→</span>
+              <ul className="space-y-3 text-sm text-white/70">
+                <li className="flex items-start gap-2.5">
+                  <ArrowRight className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   Response within 1 business day
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-amber-400 mt-0.5">→</span>
+                <li className="flex items-start gap-2.5">
+                  <ArrowRight className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   A brief discovery call to understand your needs
                 </li>
-                <li className="flex items-start gap-2">
-                  <span className="text-amber-400 mt-0.5">→</span>
+                <li className="flex items-start gap-2.5">
+                  <ArrowRight className="w-4 h-4 text-amber-400 mt-0.5 flex-shrink-0" aria-hidden="true" />
                   A tailored proposal and next steps
                 </li>
               </ul>
@@ -190,12 +190,13 @@ export default function ContactPage() {
               {/* Name Row */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-first-name" className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     First Name <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="contact-first-name"
                     type="text"
+                    autoComplete="given-name"
                     value={firstName}
                     onChange={e => setFirstName(e.target.value)}
                     placeholder="Jane"
@@ -208,12 +209,13 @@ export default function ContactPage() {
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-last-name" className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Last Name <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="contact-last-name"
                     type="text"
+                    autoComplete="family-name"
                     value={lastName}
                     onChange={e => setLastName(e.target.value)}
                     placeholder="Smith"
@@ -230,12 +232,13 @@ export default function ContactPage() {
               {/* Email and Phone */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-email" className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Work Email <span className="text-red-400">*</span>
                   </label>
                   <input
                     id="contact-email"
                     type="email"
+                    autoComplete="email"
                     value={email}
                     onChange={e => setEmail(e.target.value)}
                     placeholder="jane.smith@university.edu"
@@ -248,12 +251,13 @@ export default function ContactPage() {
                   )}
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-phone" className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Phone Number
                   </label>
                   <input
                     id="contact-phone"
                     type="tel"
+                    autoComplete="tel"
                     value={phone}
                     onChange={e => setPhone(e.target.value)}
                     placeholder="(555) 123-4567"
@@ -265,12 +269,13 @@ export default function ContactPage() {
               {/* Institution + Role */}
               <div className="grid sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-institution" className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Institution
                   </label>
                   <input
                     id="contact-institution"
                     type="text"
+                    autoComplete="organization"
                     value={institution}
                     onChange={e => setInstitution(e.target.value)}
                     placeholder="e.g. State University"
@@ -278,12 +283,13 @@ export default function ContactPage() {
                   />
                 </div>
                 <div>
-                  <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                  <label htmlFor="contact-role" className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                     Role / Title
                   </label>
                   <input
                     id="contact-role"
                     type="text"
+                    autoComplete="organization-title"
                     value={role}
                     onChange={e => setRole(e.target.value)}
                     placeholder="e.g. VP of IT"
@@ -294,7 +300,7 @@ export default function ContactPage() {
 
               {/* Message */}
               <div>
-                <label className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
+                <label htmlFor="contact-message" className="block text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                   How Can We Help? <span className="text-red-400">*</span>
                 </label>
                 <textarea

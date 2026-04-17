@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { ArrowRight, Search, Rocket, Box, Cpu } from 'lucide-react';
+import { ArrowRight, Search, Rocket, Box, Cpu, Server, Workflow, Users } from 'lucide-react';
 import { motion, animate, useInView } from 'motion/react';
 import { Routes, Route } from 'react-router-dom';
 import FeedbackPage from './pages/FeedbackPage';
@@ -115,24 +115,39 @@ const Services = () => {
   return (
     <div id="services" className="py-24 bg-white scroll-mt-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 max-w-3xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-2xl mb-16"
+        >
+          <span className="text-xs font-bold uppercase tracking-widest text-blue-600 block mb-3">Our Services</span>
+          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
             Services Designed for Higher Education
           </h2>
-        </div>
+          <p className="mt-4 text-gray-500 leading-relaxed max-w-xl">
+            Three pillars of support — from deep technical ERP expertise to change management that drives real adoption.
+          </p>
+        </motion.div>
 
-        <div className="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6">
           <ServiceCard
+            index={0}
+            icon={Server}
             title="Enterprise System Strategy and Support"
             description="We provide implementation support, optimization, advisory services, and operational guidance for the core systems that power your institution."
             link="/services/enterprise-system-strategy"
           />
           <ServiceCard
+            index={1}
+            icon={Workflow}
             title="Process Improvement and Operational Efficiency"
             description="We help colleges and universities streamline workflows, reduce manual effort, improve collaboration across departments, and better align systems with institutional goals."
             link="/services/process-improvement"
           />
           <ServiceCard
+            index={2}
+            icon={Users}
             title="Change Management, Training, and Functional Leadership"
             description="We prepare teams for change through strategic planning, stakeholder engagement, communication, training, and ongoing functional support that drives adoption and long-term success."
             link="/services/change-management"
@@ -143,21 +158,61 @@ const Services = () => {
   );
 };
 
-const ServiceCard = ({ title, description, link }: { title: string, description: string, link?: string }) => (
-  <motion.div
-    whileHover={{ y: -10 }}
-    className="group relative rounded-2xl overflow-hidden shadow-lg h-80 md:h-96 flex flex-col justify-start bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900"
-  >
-    <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 opacity-60 transition-opacity duration-500 group-hover:opacity-80"></div>
-    <div className="relative z-10 p-8 flex flex-col h-full">
-      <h3 className="text-2xl font-bold text-white mb-3">{title}</h3>
-      <p className="text-gray-200 mb-6 leading-relaxed line-clamp-4">{description}</p>
-      <a href={link || "#"} className="inline-flex items-center text-white font-medium mt-auto group-hover:translate-x-1 transition-transform">
-        View Capabilities <ArrowRight className="ml-2 w-4 h-4" />
-      </a>
-    </div>
-  </motion.div>
-);
+const ServiceCard = ({
+  title,
+  description,
+  link,
+  icon: Icon,
+  index,
+}: {
+  title: string;
+  description: string;
+  link?: string;
+  icon: React.ElementType;
+  index: number;
+}) => {
+  const num = String(index + 1).padStart(2, '0');
+  return (
+    <motion.a
+      href={link || '#'}
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5, delay: index * 0.08 }}
+      whileHover={{ y: -6 }}
+      className="group relative block bg-white rounded-2xl border border-gray-100 shadow-sm p-8 overflow-hidden transition-all duration-300 hover:border-blue-200 hover:shadow-xl"
+    >
+      <div className="absolute top-0 left-0 h-1 w-0 bg-gradient-to-r from-blue-600 to-blue-400 transition-all duration-500 group-hover:w-full" />
+
+      <span
+        className="absolute top-5 right-6 text-[4rem] font-black leading-none tabular-nums select-none pointer-events-none"
+        style={{ color: 'rgba(28,130,226,0.06)' }}
+        aria-hidden="true"
+      >
+        {num}
+      </span>
+
+      <div
+        className="relative w-14 h-14 rounded-xl flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110"
+        style={{ background: 'rgba(28,130,226,0.1)', color: '#1C82E2' }}
+      >
+        <Icon className="w-7 h-7" />
+      </div>
+
+      <h3 className="relative text-xl font-bold text-gray-900 mb-3 leading-snug group-hover:text-blue-700 transition-colors">
+        {title}
+      </h3>
+      <p className="relative text-gray-600 text-sm leading-relaxed mb-6">
+        {description}
+      </p>
+
+      <div className="relative inline-flex items-center text-sm font-semibold text-blue-600 transition-transform group-hover:translate-x-1">
+        Learn More
+        <ArrowRight className="ml-2 w-4 h-4" />
+      </div>
+    </motion.a>
+  );
+};
 
 const Stats = () => {
   return (
