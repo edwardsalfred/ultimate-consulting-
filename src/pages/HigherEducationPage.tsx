@@ -78,7 +78,6 @@ const caseStudies = [
     tag: 'Project Management & System Upgrades',
     icon: ClipboardCheck,
     logo: '/colleges logos/Kent_State_University_Logo.svg.png',
-    logoSize: 'max-h-20',
     text: 'Kent State University partnered with Ultimate Consulting to provide expert project management and technical services for their Banner 9 Self-Service upgrade. Our team guided the functional and technical implementation across the Banner General, Finance, Employee, Student, and Faculty modules, helping the university streamline processes, improve customer service, and enhance daily business operations.',
   },
   {
@@ -86,15 +85,13 @@ const caseStudies = [
     tag: 'Database Administration & System Installation',
     icon: Database,
     logo: '/colleges logos/south-carolina.svg',
-    logoSize: 'max-h-16',
     text: 'The University of South Carolina engaged Ultimate Consulting to provide an Oracle/Banner DBA consultant to lead the implementation of a new Banner XE instance. Our technical experts successfully installed and upgraded the Oracle database and Ellucian software across multiple modules, configured the application servers, and successfully deployed the Banner API to ensure complete system readiness.',
   },
   {
     institution: 'University of California, Santa Cruz',
     tag: 'Staff Augmentation',
     icon: Users,
-    logo: '/colleges logos/ucsc-logo-png-1632430467.png',
-    logoSize: 'max-h-24',
+    logo: '/colleges logos/new_santacruz_logo.png',
     text: 'Facing sudden technical staffing shortages, UCSC partnered with Ultimate Consulting to supply an expert Banner Finance technical resource. We ensured their Banner version upgrades stayed on track while successfully guiding the complex technical API integration of the Jaggaer supplier management system, providing vital mentorship to internal staff along the way.',
   },
   {
@@ -102,7 +99,6 @@ const caseStudies = [
     tag: 'Financial Aid & Migration',
     icon: GraduationCap,
     logo: '/colleges logos/santa fe community college logo.png',
-    logoSize: 'max-h-24',
     text: 'As Santa Fe transitioned its systems, Ultimate Consulting provided crucial functional support for the Financial Aid team during a complex Banner-to-Workday migration, ensuring loan application processing and compliance continued flawlessly. Previously, we successfully automated their student-advisor assignment process using SQL rules to prevent advisor overloads.',
   },
   {
@@ -110,7 +106,6 @@ const caseStudies = [
     tag: 'Custom Algorithm Development & Data Collection',
     icon: Code2,
     logo: '/colleges logos/3061-upenn-perelman-school-medicine.gif',
-    logoSize: 'max-h-20',
     text: 'The University of Pennsylvania\u2019s Perelman School of Medicine partnered with Ultimate Consulting to develop a specialized Python algorithm to capture psychometric behavioral data from auditory stimuli. Our technical team engineered a custom solution that synchronized with complex neurophysiological recording systems, established normalized parameters from patient responses, and successfully set up validation for data collection using Amazon Mechanical Turk.',
   },
   {
@@ -253,7 +248,7 @@ const CaseStudyCard: React.FC<{ study: typeof caseStudies[0]; index: number }> =
           <img
             src={study.logo}
             alt={`${study.institution} logo`}
-            className={`${study.logoSize ?? 'max-h-16'} max-w-full w-auto object-contain`}
+            className="max-h-20 max-w-[180px] w-auto object-contain"
             style={(study as { logoBlend?: boolean }).logoBlend ? { mixBlendMode: 'multiply' } : undefined}
             onError={handleLogoError}
           />
