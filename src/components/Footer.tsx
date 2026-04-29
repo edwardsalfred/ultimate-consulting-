@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const NEWSLETTER_FORM_ID = 'XvNwejXMxFvyI8Nm4yxI';
+const NEWSLETTER_FORM_URL = `https://api.leadconnectorhq.com/widget/form/${NEWSLETTER_FORM_ID}`;
+const GHL_EMBED_SCRIPT = 'https://link.msgsndr.com/js/form_embed.js';
 
 const FooterLink = ({ text, href }: { text: string; href?: string }) => (
   <a href={href || "#"} className="text-gray-400 hover:text-primary transition-colors">
@@ -9,6 +13,13 @@ const FooterLink = ({ text, href }: { text: string; href?: string }) => (
 );
 
 const Footer = () => {
+  useEffect(() => {
+    if (document.querySelector(`script[src="${GHL_EMBED_SCRIPT}"]`)) return;
+    const script = document.createElement('script');
+    script.src = GHL_EMBED_SCRIPT;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
 
   return (
     <footer className="bg-slate-900 pt-20 pb-10 border-t border-slate-800">
@@ -21,7 +32,23 @@ const Footer = () => {
               className="h-12 mb-8"
               referrerPolicy="no-referrer"
             />
-
+            <iframe
+              src={NEWSLETTER_FORM_URL}
+              id={`inline-${NEWSLETTER_FORM_ID}`}
+              title="Ultimate Insights Newsletter Opt-In"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Ultimate Insights – Newsletter Opt-In"
+              data-height="525"
+              data-layout-iframe-id={`inline-${NEWSLETTER_FORM_ID}`}
+              data-form-id={NEWSLETTER_FORM_ID}
+              style={{ width: '100%', minHeight: 525, border: 'none', borderRadius: 10 }}
+            />
           </div>
 
           <div className="md:col-span-4 flex flex-col space-y-4">
