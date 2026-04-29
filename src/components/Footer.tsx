@@ -1,6 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
+
+const NEWSLETTER_FORM_ID = 'XvNwejXMxFvyI8Nm4yxI';
+const NEWSLETTER_FORM_URL = `https://api.leadconnectorhq.com/widget/form/${NEWSLETTER_FORM_ID}`;
+const GHL_EMBED_SCRIPT = 'https://link.msgsndr.com/js/form_embed.js';
 
 const FooterLink = ({ text, href }: { text: string; href?: string }) => (
   <a href={href || "#"} className="text-gray-400 hover:text-primary transition-colors">
@@ -9,6 +13,14 @@ const FooterLink = ({ text, href }: { text: string; href?: string }) => (
 );
 
 const Footer = () => {
+  useEffect(() => {
+    if (document.querySelector(`script[src="${GHL_EMBED_SCRIPT}"]`)) return;
+    const script = document.createElement('script');
+    script.src = GHL_EMBED_SCRIPT;
+    script.async = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <footer className="bg-slate-900 pt-20 pb-10 border-t border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -24,14 +36,23 @@ const Footer = () => {
             <p className="text-gray-400 mb-6">
               Be the first to learn about new services and tools to help your organization thrive.
             </p>
-            <form className="space-y-4">
-              <input type="text" placeholder="First Name" className="w-full bg-slate-800 border border-slate-700 rounded-full px-6 py-3 text-white focus:outline-none focus:border-primary" />
-              <input type="text" placeholder="Last Name" className="w-full bg-slate-800 border border-slate-700 rounded-full px-6 py-3 text-white focus:outline-none focus:border-primary" />
-              <input type="email" placeholder="Email Address" className="w-full bg-slate-800 border border-slate-700 rounded-full px-6 py-3 text-white focus:outline-none focus:border-primary" />
-              <button type="button" className="w-full bg-white text-slate-900 rounded-full px-6 py-3 font-medium hover:bg-gray-100 transition-colors">
-                Submit
-              </button>
-            </form>
+            <iframe
+              src={NEWSLETTER_FORM_URL}
+              id={`inline-${NEWSLETTER_FORM_ID}`}
+              title="Ultimate Insights Newsletter Opt-In"
+              data-layout="{'id':'INLINE'}"
+              data-trigger-type="alwaysShow"
+              data-trigger-value=""
+              data-activation-type="alwaysActivated"
+              data-activation-value=""
+              data-deactivation-type="neverDeactivate"
+              data-deactivation-value=""
+              data-form-name="Ultimate Insights – Newsletter Opt-In"
+              data-height="525"
+              data-layout-iframe-id={`inline-${NEWSLETTER_FORM_ID}`}
+              data-form-id={NEWSLETTER_FORM_ID}
+              style={{ width: '100%', minHeight: 525, border: 'none', borderRadius: 10 }}
+            />
           </div>
 
           <div className="md:col-span-4 flex flex-col space-y-4">
