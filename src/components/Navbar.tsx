@@ -94,9 +94,10 @@ const Navbar = () => {
           <div className="flex-shrink-0">
             <a href="/">
               <img
-                src="/updated ultimate consulting logo.png"
+                src="https://4ucit.com/wp-content/uploads/2022/11/NAV-Logo-WHITE2-768x156.png"
                 alt="Ultimate Consulting"
                 className="h-10 transition-all duration-300"
+                referrerPolicy="no-referrer"
               />
             </a>
           </div>
