@@ -32,7 +32,7 @@ const Hero = () => {
               Modernize Higher Education with Confidence
             </span>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white tracking-tight leading-tight mb-8 max-w-4xl">
-              Your Technology Should Support Student Success And Not Create More Complexity.
+              Your Technology Should Support Student Success And Not Create More Complexity
             </h1>
             <p className="text-base text-white/80 mb-10 leading-relaxed max-w-2xl">
               Ultimate Consulting helps colleges and universities modernize enterprise systems, improve business processes, and lead transformation initiatives with confidence. With deep expertise in Ellucian Banner, Ellucian Colleague, and Workday, we support higher education institutions in navigating change, strengthening operations, and achieving lasting results.

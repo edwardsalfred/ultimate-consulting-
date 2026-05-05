@@ -36,12 +36,12 @@ const WhoWeArePage = () => {
     },
     {
       name: "Jan Samuel",
-      role: "VP of Business Operations",
+      role: "Chief Operations Officer",
       image: "https://4ucit.com/wp-content/uploads/2023/01/Jan-295x300.png"
     },
     {
       name: "Darryl Nash",
-      role: "VP of Business Development",
+      role: "Practice Partner",
       image: "/Darryl Nash.png"
     }
   ];
