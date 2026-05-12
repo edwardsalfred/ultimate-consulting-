@@ -22,7 +22,7 @@ jobs:
           node-version: 20
 
       - name: Publish due blog posts
-        run: node scripts/publish-blog.js
+        run: node scripts/publish-blog.cjs
 
       - name: Commit and push changes
         run: |
