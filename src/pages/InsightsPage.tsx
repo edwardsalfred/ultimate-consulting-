@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { ArrowRight, Calendar, User, ChevronRight, ChevronLeft } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 
-import { blogPosts } from '../data/blogPosts';
+import { blogPosts as hardcodedPosts } from '../data/blogPosts';
+import { loadMarkdownPosts } from '../lib/blogLoader';
 
 const POSTS_PER_PAGE = 6;
 
@@ -14,10 +15,52 @@ export default function InsightsPage() {
   const pageParam = parseInt(searchParams.get('page') || '1', 10);
   const currentPage = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
 
-  const totalPages = Math.ceil(blogPosts.length / POSTS_PER_PAGE);
-  const safePage = Math.min(currentPage, totalPages);
+  // Load markdown posts and merge with hardcoded posts (markdown posts appear first/newest)
+  const markdownPosts = useMemo(() => loadMarkdownPosts(), []);
 
-  const pagePosts = blogPosts.slice(
+  // Deduplicate: if a markdown post has same slug as a hardcoded one, prefer markdown
+  const markdownSlugs = new Set(markdownPosts.map((p) => p.slug));
+  const filteredHardcoded = hardcodedPosts.filter((p) => !markdownSlugs.has(p.slug));
+
+  // Unified display shape for the card grid
+  type DisplayPost = {
+    id: string;
+    slug: string;
+    title: string;
+    category: string;
+    author: string;
+    date: string;
+    excerpt: string;
+    image: string;
+  };
+
+  const allPosts: DisplayPost[] = [
+    ...markdownPosts.map((p) => ({
+      id: `md-${p.slug}`,
+      slug: p.slug,
+      title: p.title,
+      category: p.category,
+      author: p.author,
+      date: p.date,
+      excerpt: p.excerpt,
+      image: p.image,
+    })),
+    ...filteredHardcoded.map((p) => ({
+      id: String(p.id),
+      slug: p.slug,
+      title: p.title,
+      category: p.category,
+      author: p.author,
+      date: p.date,
+      excerpt: p.excerpt,
+      image: p.image,
+    })),
+  ];
+
+  const totalPages = Math.ceil(allPosts.length / POSTS_PER_PAGE);
+  const safePage = Math.min(currentPage, Math.max(totalPages, 1));
+
+  const pagePosts = allPosts.slice(
     (safePage - 1) * POSTS_PER_PAGE,
     safePage * POSTS_PER_PAGE
   );

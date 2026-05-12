@@ -5,6 +5,7 @@ import { ArrowLeft, Calendar, User, ArrowRight } from 'lucide-react';
 import Navbar from '../components/Navbar';
 import Footer from '../components/Footer';
 import { blogPosts } from '../data/blogPosts';
+import { loadMarkdownPosts, MarkdownPost } from '../lib/blogLoader';
 
 const ShareBar = ({ title }: { title: string }) => {
   const url = encodeURIComponent(window.location.href);
@@ -65,9 +66,17 @@ export default function BlogPostPage() {
     window.scrollTo(0, 0);
   }, [slug]);
 
-  const post = blogPosts.find((p) => p.slug === slug);
+  // Check markdown posts first (they take priority)
+  const markdownPosts = loadMarkdownPosts();
+  const markdownPost: MarkdownPost | undefined = markdownPosts.find((p) => p.slug === slug);
 
-  if (!post) {
+  // Fall back to hardcoded posts
+  const hardcodedPost = !markdownPost ? blogPosts.find((p) => p.slug === slug) : undefined;
+
+  // Common metadata
+  const postMeta = markdownPost || hardcodedPost;
+
+  if (!postMeta) {
     return (
       <div className="min-h-screen bg-slate-50 font-sans flex flex-col">
         <Navbar />
@@ -104,11 +113,11 @@ export default function BlogPostPage() {
           </Link>
 
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-amber-400 block mb-6 drop-shadow-sm">
-            {post.category}
+            {postMeta.category}
           </span>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-10 shadow-black/50 drop-shadow-lg">
-            {post.title}
+            {postMeta.title}
           </h1>
 
           <div className="flex flex-wrap items-center justify-center gap-6 text-sm text-gray-300 font-medium">
@@ -116,12 +125,12 @@ export default function BlogPostPage() {
               <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center border border-white/10 backdrop-blur-sm">
                 <User className="w-5 h-5 text-gray-100" />
               </div>
-              <span className="text-white drop-shadow-md">{post.author}</span>
+              <span className="text-white drop-shadow-md">{postMeta.author}</span>
             </span>
             <span className="w-1 h-1 rounded-full bg-white/30 hidden sm:block"></span>
             <span className="flex items-center gap-2 drop-shadow-md">
               <Calendar className="w-4 h-4 text-white/50" />
-              <span className="text-white">{post.date}</span>
+              <span className="text-white">{postMeta.date}</span>
             </span>
           </div>
         </div>
@@ -131,22 +140,33 @@ export default function BlogPostPage() {
         <article className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Featured Image */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="w-full h-80 md:h-[500px] rounded-3xl overflow-hidden mb-16 shadow-md border border-gray-100"
-          >
-            <img
-              src={post.image}
-              alt={post.title}
-              className="w-full h-full object-cover"
-            />
-          </motion.div>
+          {postMeta.image && (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="w-full h-80 md:h-[500px] rounded-3xl overflow-hidden mb-16 shadow-md border border-gray-100"
+            >
+              <img
+                src={postMeta.image}
+                alt={postMeta.title}
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          )}
 
           {/* Content */}
           <div className="max-w-3xl mx-auto">
-            {post.content}
-            <ShareBar title={post.title} />
+            {markdownPost ? (
+              /* Markdown-sourced post: render HTML with prose styles */
+              <div
+                className="prose-blog"
+                dangerouslySetInnerHTML={{ __html: markdownPost.htmlContent }}
+              />
+            ) : (
+              /* Hardcoded JSX post */
+              hardcodedPost?.content
+            )}
+            <ShareBar title={postMeta.title} />
           </div>
 
         </article>
