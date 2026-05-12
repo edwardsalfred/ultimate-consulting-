@@ -1,0 +1,33 @@
+name: Publish scheduled blog posts
+
+on:
+  schedule:
+    - cron: "0 13 12 5 *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Publish due blog posts
+        run: node scripts/publish-blog.js
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add content/blog
+          git diff --cached --quiet || git commit -m "Publish scheduled blog post"
+          git push
