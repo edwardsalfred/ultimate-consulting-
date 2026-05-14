@@ -2,7 +2,9 @@ name: Publish scheduled blog posts
 
 on:
   schedule:
-    - cron: "0 13 12 5 *"
+    # Both lines run year-round; the gating step below picks the one that lands on 8 AM Eastern.
+    - cron: "0 12 * * 1"  # 8 AM EDT (UTC-4), 7 AM EST
+    - cron: "0 13 * * 1"  # 8 AM EST (UTC-5), 9 AM EDT
   workflow_dispatch:
 
 permissions:
@@ -13,18 +15,37 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check Eastern time is 8 AM
+        id: check
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "proceed=true" >> $GITHUB_OUTPUT
+            exit 0
+          fi
+          HOUR=$(TZ=America/New_York date +%H)
+          if [ "$HOUR" = "08" ]; then
+            echo "proceed=true" >> $GITHUB_OUTPUT
+          else
+            echo "proceed=false" >> $GITHUB_OUTPUT
+            echo "Not 8 AM Eastern (currently $HOUR). Skipping."
+          fi
+
       - name: Checkout repo
+        if: steps.check.outputs.proceed == 'true'
         uses: actions/checkout@v4
 
       - name: Setup Node
+        if: steps.check.outputs.proceed == 'true'
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
       - name: Publish due blog posts
+        if: steps.check.outputs.proceed == 'true'
         run: node scripts/publish-blog.cjs
 
       - name: Commit and push changes
+        if: steps.check.outputs.proceed == 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
